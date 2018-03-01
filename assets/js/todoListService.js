@@ -8,8 +8,9 @@
       let randomTasks = ["Podmazi lanac na bajsu", "Prokuvaj mleko", "Ocisti akvarijum", "Slomi gitaru", "Napisi pesmu", "Procitaj knjigu", "Naduvaj balon", "Operi kosu", "Ocisti slivnik", "Zakucaj ekser", "Pomeri antenu", "Prekreci zid", "Kupi zavese", "Pojacaj zvucnik", "Napravi kulu od karata", "Podeli vizit-karte", "Updejtuj software", "Zameni baterije", "Pusti zmaja", "Upali svetlo"];
        return {
         pulse: function() {
+          let randomNumber = Math.floor(Math.random() * 19);
           let checkDuplicate = $localStorage.todoList.some(function (value) {
-            return randomTasks[Math.floor(Math.random() * 19)].toLowerCase() === value.title.toLowerCase();
+              return randomTasks[randomNumber].toLowerCase() === value.title.toLowerCase();
           });
           if (checkDuplicate) {
             return {
@@ -18,7 +19,7 @@
           } else {
             $localStorage.todoList.push(
               {
-                title: randomTasks[Math.floor(Math.random() * 19)],
+                title: randomTasks[randomNumber],
                 status:false
               }
             );

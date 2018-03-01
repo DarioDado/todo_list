@@ -2,7 +2,7 @@
     angular.module("todoApp.controller", [])
     .controller("todoController", function($scope, todoService, $interval) {
       // **********insert data  simulator*************
-      //to turn of simulator comment this code
+      // to turn of simulator comment this code
       $interval(callAtInterval,30000);
       function callAtInterval() {
         output = todoService.pulse();

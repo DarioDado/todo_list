@@ -106,7 +106,7 @@ li:nth-child(2n) {
 
 #container {
 	width: 360px;
-	margin: 100px auto;
+	margin: 45px auto;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 	background-color: #f7f7f7;
 }
