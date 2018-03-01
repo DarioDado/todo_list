@@ -1,10 +1,34 @@
 (function(){
     angular.module("todoApp.service", [])
-    .factory("todoService", function($localStorage) {
+    .factory("todoService", function($localStorage, $log) {
+      // to drop all data uncomment these 3 lines
       // $localStorage.undoneTasks = 0;
       // $localStorage.doneTasks = 0;
       // $localStorage.todoList = [];
-      return {
+      let randomTasks = ["Podmazi lanac na bajsu", "Prokuvaj mleko", "Ocisti akvarijum", "Slomi gitaru", "Napisi pesmu", "Procitaj knjigu", "Naduvaj balon", "Operi kosu", "Ocisti slivnik", "Zakucaj ekser", "Pomeri antenu", "Prekreci zid", "Kupi zavese", "Pojacaj zvucnik", "Napravi kulu od karata", "Podeli vizit-karte", "Updejtuj software", "Zameni baterije", "Pusti zmaja", "Upali svetlo"];
+       return {
+        pulse: function() {
+          let checkDuplicate = $localStorage.todoList.some(function (value) {
+            return randomTasks[Math.floor(Math.random() * 19)].toLowerCase() === value.title.toLowerCase();
+          });
+          if (checkDuplicate) {
+            return {
+              error: "Task allready exists"
+            };
+          } else {
+            $localStorage.todoList.push(
+              {
+                title: randomTasks[Math.floor(Math.random() * 19)],
+                status:false
+              }
+            );
+            $localStorage.undoneTasks++;
+            return {
+              todoList: $localStorage.todoList,
+              undoneTasks: $localStorage.undoneTasks
+            };
+          }
+        },
         getAllTasks: function() {
           return $localStorage.todoList;
         },

@@ -1,6 +1,20 @@
 (function(){
     angular.module("todoApp.controller", [])
-    .controller("todoController", function($scope, todoService) {
+    .controller("todoController", function($scope, todoService, $interval) {
+      // **********insert data  simulator*************
+      //to turn of simulator comment this code
+      $interval(callAtInterval,30000);
+      function callAtInterval() {
+        output = todoService.pulse();
+        if (output.error) {
+          $scope.error = output.error;
+        } else {
+          $scope.toDoList = output.todoList;
+          $scope.undoneTasks = output.undoneTasks;
+          $scope.error = "";
+        }
+      }
+      // **********insert data  simulator*************
       let output;
       $scope.input = "";
       $scope.toDoList = todoService.getAllTasks();
