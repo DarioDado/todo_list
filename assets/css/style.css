@@ -115,3 +115,8 @@ li:nth-child(2n) {
 	text-decoration: line-through;
 	color: gray;
 }
+
+#error {
+	color: white;
+  text-align: center;
+}

@@ -9,6 +9,19 @@
           return $localStorage.todoList;
         },
         addTask: function(input) {
+          if (input === "") {
+            return {
+              error: "You can not post empty task"
+            };
+          }
+          let checkDuplicate = $localStorage.todoList.some(function (value) {
+            return input.toLowerCase() === value.title.toLowerCase();
+          });
+          if (checkDuplicate) {
+            return {
+              error: "Task allready exists"
+            };
+          }
           $localStorage.todoList.push(
             {
               title: input,
@@ -19,7 +32,7 @@
           return {
             todoList: $localStorage.todoList,
             undoneTasks: $localStorage.undoneTasks
-          }
+          };
         },
         changeStatus: function(index) {
           $localStorage.todoList[index].status = !$localStorage.todoList[index].status;
@@ -34,7 +47,7 @@
             todoList: $localStorage.todoList,
             undoneTasks: $localStorage.undoneTasks,
             doneTasks: $localStorage.doneTasks
-          }
+          };
         },
         getUndoneTaskCount: function() {
           return $localStorage.undoneTasks;
@@ -42,6 +55,6 @@
         getDoneTaskCount: function() {
           return $localStorage.doneTasks;
         }
-      }
+      };
     });
 })();

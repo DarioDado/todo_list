@@ -28,10 +28,13 @@
     		<label>{{item.title}}</label>
 			</li>
 		</ul>
-		<form name="form" ng-submit="addTask(input)" novalidate>
-			<input id="todo-input" type="text" placeholder="Add New To-Do Item" ng-model="input" required>
-			<button ng-disabled="form.$invalid" id="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
+		<form ng-submit="addTask(input)" >
+			<input id="todo-input" type="text" placeholder="Add New To-Do Item" ng-model="input">
+			<button id="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
 		</form>
+	</div>
+	<div id="error">
+		<p>{{error}}</p>
 	</div>
 <!-- <script type="text/javascript" src="assets/js/script.js"></script> -->
 </body>
