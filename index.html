@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>To Do List</title>
+	<script type="text/javascript" src="assets/js/lib/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script type="text/javascript" src="assets/js/controllers.js"></script>
+</head>
+<body ng-app="todoApp" ng-controller="todoController">
+	<div id="toolbar">
+		<h1 id="name-label">TO DO LIST</h1>
+		<div id="count-box">
+			<p class="count-tasks">Undone Tasks: {{undoneTasks}}</p>
+			<p class="count-tasks">Done Tasks: {{doneTasks}}</p>
+		</div>
+	</div>
+	<div id="container">
+		<ul>
+			<li ng-repeat="item in toDoList" ng-init="index=$index">
+				<input type="checkbox" ng-click="changeStatus(index)">
+    		<label>{{item.title}}</label>
+			</li>
+		</ul>
+		<input id="todo-input" type="text" placeholder="Add New To-Do Item" ng-model="input">
+		<i class="fa fa-plus" aria-hidden="true" ng-click="addTask(input)"></i>
+	</div>
+<!-- <script type="text/javascript" src="assets/js/script.js"></script> -->
+</body>
+</html>
