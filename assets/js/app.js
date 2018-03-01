@@ -1,5 +1,7 @@
 (function(){
     angular.module("todoApp", [
-        "todoApp.controller"
+        "todoApp.controller",
+        "todoApp.service",
+        "ngStorage"
     ]);
 })();

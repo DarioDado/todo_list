@@ -1,29 +1,22 @@
 (function(){
     angular.module("todoApp.controller", [])
-    .controller("todoController", function($scope, $log) {
-      $scope.toDoList = [];
+    .controller("todoController", function($scope, todoService) {
+      let output;
       $scope.input = "";
-      $scope.undoneTasks = 0;
-      $scope.doneTasks = 0;
+      $scope.toDoList = todoService.getAllTasks();
+      $scope.undoneTasks = todoService.getUndoneTaskCount();
+      $scope.doneTasks = todoService.getDoneTaskCount();
       $scope.addTask = function(input) {
-        $scope.toDoList.push(
-          {
-            title: input,
-            status:false
-          }
-        );
+        output = todoService.addTask(input);
+        $scope.toDoList = output.todoList;
+        $scope.undoneTasks = output.undoneTasks;
         $scope.input = "";
-        $scope.undoneTasks++;
       };
       $scope.changeStatus = function(index) {
-        $scope.toDoList[index].status = !$scope.toDoList[index].status;
-        if ($scope.toDoList[index].status) {
-          $scope.undoneTasks--;
-          $scope.doneTasks++;
-        } else {
-          $scope.undoneTasks++;
-          $scope.doneTasks--;
-        }
+        output = todoService.changeStatus(index);
+        $scope.toDoList = output.todoList;
+        $scope.undoneTasks = output.undoneTasks;
+        $scope.doneTasks = output.doneTasks;
       };
     });
 })();

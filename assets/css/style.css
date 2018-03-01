@@ -61,6 +61,13 @@ input::-webkit-input-placeholder {
 	color: #2980b9;
 }
 
+#submit {
+	width: 50px;
+  border-radius: 5px;
+  border-color: #2980b9;
+  background-color: #f7f7f7;
+}
+
 ul {
 	list-style: none;
 	margin: 0;

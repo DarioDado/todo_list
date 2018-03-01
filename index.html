@@ -8,8 +8,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/ngstorage/0.3.10/ngStorage.min.js"></script>
 	<script type="text/javascript" src="assets/js/app.js"></script>
 	<script type="text/javascript" src="assets/js/controllers.js"></script>
+	<script type="text/javascript" src="assets/js/todoListService.js"></script>
 </head>
 <body ng-app="todoApp" ng-controller="todoController">
 	<div id="toolbar">
@@ -22,12 +24,14 @@
 	<div id="container">
 		<ul>
 			<li ng-repeat="item in toDoList" ng-init="index=$index">
-				<input type="checkbox" ng-click="changeStatus(index)">
+				<input type="checkbox" ng-checked="item.status" ng-click="changeStatus(index)">
     		<label>{{item.title}}</label>
 			</li>
 		</ul>
-		<input id="todo-input" type="text" placeholder="Add New To-Do Item" ng-model="input">
-		<i class="fa fa-plus" aria-hidden="true" ng-click="addTask(input)"></i>
+		<form name="form" ng-submit="addTask(input)" novalidate>
+			<input id="todo-input" type="text" placeholder="Add New To-Do Item" ng-model="input" required>
+			<button ng-disabled="form.$invalid" id="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
+		</form>
 	</div>
 <!-- <script type="text/javascript" src="assets/js/script.js"></script> -->
 </body>
